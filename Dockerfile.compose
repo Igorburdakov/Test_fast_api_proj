@@ -1,0 +1,3 @@
+FROM alpine:latest
+COPY docker-compose.yml /docker-compose.yml
+CMD ["cat", "/docker-compose.yml"]

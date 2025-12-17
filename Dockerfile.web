@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Устанавливаем curl для healthcheck
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements-web.txt .
+RUN pip install --no-cache-dir -r requirements-web.txt
+
+COPY fast_api_web_server.py .
+COPY wait-for-backend.sh /wait-for-backend.sh
+RUN chmod +x /wait-for-backend.sh
+
+EXPOSE 5000
+
+CMD ["/wait-for-backend.sh", "backend", "5001", "http://0.0.0.0:5000"]

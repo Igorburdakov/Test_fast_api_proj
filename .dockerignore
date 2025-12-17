@@ -1,0 +1,15 @@
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+venv
+.DS_Store
+*.log
+.vscode
+.idea
+*.sqlite
+*.sqlite3
+*.db
